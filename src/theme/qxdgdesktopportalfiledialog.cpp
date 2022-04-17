@@ -1,41 +1,21 @@
-/****************************************************************************
-**
-** Copyright (C) 2017-2018 Red Hat, Inc
-** Contact: https://www.qt.io/licensing/
-**
-** This file is part of the plugins of the Qt Toolkit.
-**
-** $QT_BEGIN_LICENSE:LGPL$
-** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and The Qt Company. For licensing terms
-** and conditions see https://www.qt.io/terms-conditions. For further
-** information use the contact form at https://www.qt.io/contact-us.
-**
-** GNU Lesser General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU Lesser
-** General Public License version 3 as published by the Free Software
-** Foundation and appearing in the file LICENSE.LGPL3 included in the
-** packaging of this file. Please review the following information to
-** ensure the GNU Lesser General Public License version 3 requirements
-** will be met: https://www.gnu.org/licenses/lgpl-3.0.html.
-**
-** GNU General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU
-** General Public License version 2.0 or (at your option) the GNU General
-** Public license version 3 or any later version approved by the KDE Free
-** Qt Foundation. The licenses are as published by the Free Software
-** Foundation and appearing in the file LICENSE.GPL2 and LICENSE.GPL3
-** included in the packaging of this file. Please review the following
-** information to ensure the GNU General Public License requirements will
-** be met: https://www.gnu.org/licenses/gpl-2.0.html and
-** https://www.gnu.org/licenses/gpl-3.0.html.
-**
-** $QT_END_LICENSE$
-**
-****************************************************************************/
+/*
+ * Copyright (C) 2017-2021 Red Hat, Inc
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ */
 
 #include "qxdgdesktopportalfiledialog_p.h"
 
@@ -210,7 +190,7 @@ void QXdgDesktopPortalFileDialog::openPortal()
     qDBusRegisterMetaType<FilterList>();
 
     FilterList filterList;
-    Filter* selectedFilter = nullptr;
+    auto selectedFilterIndex = filterList.size() - 1;
 
     d->userVisibleToNameFilter.clear();
 
@@ -236,7 +216,7 @@ void QXdgDesktopPortalFileDialog::openPortal()
             filterList << filter;
 
             if (!d->selectedMimeTypeFilter.isEmpty() && d->selectedMimeTypeFilter == mimeTypefilter)
-                selectedFilter = &filterList.last();
+                selectedFilterIndex = filterList.size() - 1;
         }
     } else if (!d->nameFilters.isEmpty()) {
         for (const QString &nameFilter : d->nameFilters) {
@@ -246,7 +226,15 @@ void QXdgDesktopPortalFileDialog::openPortal()
             QRegularExpressionMatch match = regexp.match(nameFilter);
             if (match.hasMatch()) {
                 QString userVisibleName = match.captured(1);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+                QStringList filterStrings = match.captured(2).split(QLatin1Char(' '), Qt::SkipEmptyParts);
+#else
                 QStringList filterStrings = match.captured(2).split(QLatin1Char(' '), QString::SkipEmptyParts);
+#endif
+                if (filterStrings.isEmpty()) {
+                    qWarning() << "Filter " << userVisibleName << " is empty and will be ignored.";
+                    continue;
+                }
 
                 FilterConditionList filterConditions;
                 for (const QString &filterString : filterStrings) {
@@ -265,7 +253,7 @@ void QXdgDesktopPortalFileDialog::openPortal()
                 d->userVisibleToNameFilter.insert(userVisibleName, nameFilter);
 
                 if (!d->selectedNameFilter.isEmpty() && d->selectedNameFilter == nameFilter)
-                    selectedFilter = &filterList.last();
+                    selectedFilterIndex = filterList.size() - 1;
             }
         }
     }
@@ -273,9 +261,8 @@ void QXdgDesktopPortalFileDialog::openPortal()
     if (!filterList.isEmpty())
         options.insert(QLatin1String("filters"), QVariant::fromValue(filterList));
 
-    if (selectedFilter) {
-        options.insert(QLatin1String("current_filter"), QVariant::fromValue(*selectedFilter));
-    }
+    if (selectedFilterIndex != -1)
+        options.insert(QLatin1String("current_filter"), QVariant::fromValue(filterList[selectedFilterIndex]));
 
     options.insert(QLatin1String("handle_token"), QStringLiteral("qt%1").arg(QRandomGenerator::global()->generate()));
 
@@ -298,6 +285,7 @@ void QXdgDesktopPortalFileDialog::openPortal()
                                                   this,
                                                   SLOT(gotResponse(uint,QVariantMap)));
         }
+        watcher->deleteLater();
     });
 }
 

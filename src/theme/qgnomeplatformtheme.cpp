@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2015 Martin Bříza <mbriza@redhat.com>
- * Copyright (C) 2017-2019 Jan Grulich <jgrulich@redhat.com>
+ * Copyright (C) 2017-2021 Jan Grulich <jgrulich@redhat.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,7 +19,7 @@
  */
 
 #include "qgnomeplatformtheme.h"
-#include "gnomehintssettings.h"
+#include "gnomesettings.h"
 #include "qgtk3dialoghelpers.h"
 #include "qxdgdesktopportalfiledialog_p.h"
 
@@ -27,18 +27,23 @@
 #include <QGuiApplication>
 #include <QStyleFactory>
 
-#if !defined(QT_NO_DBUS) && !defined(QT_NO_SYSTEMTRAYICON)
+#undef signals
+#include <gtk-3.0/gtk/gtk.h>
+#define signals Q_SIGNALS
+
+#if QT_VERSION < 0x060000
+#ifndef QT_NO_SYSTEMTRAYICON
 #include <private/qdbustrayicon_p.h>
+#endif
 #endif
 
 QGnomePlatformTheme::QGnomePlatformTheme()
 {
     if (QGuiApplication::platformName() != QStringLiteral("xcb")) {
-        if (!qEnvironmentVariableIsSet("QT_WAYLAND_DECORATION"))
+        if (!qEnvironmentVariableIsSet("QT_WAYLAND_DECORATION")) {
             qputenv("QT_WAYLAND_DECORATION", "gnome");
+        }
     }
-
-    loadSettings();
 
     /* Initialize some types here so that Gtk+ does not crash when reading
      * the treemodel for GtkFontChooser.
@@ -49,12 +54,11 @@ QGnomePlatformTheme::QGnomePlatformTheme()
 
 QGnomePlatformTheme::~QGnomePlatformTheme()
 {
-    delete m_hints;
 }
 
 QVariant QGnomePlatformTheme::themeHint(QPlatformTheme::ThemeHint hintType) const
 {
-    QVariant hint = m_hints->hint(hintType);
+    QVariant hint = GnomeSettings::hint(hintType);
     if (hint.isValid()) {
         return hint;
     } else {
@@ -64,14 +68,14 @@ QVariant QGnomePlatformTheme::themeHint(QPlatformTheme::ThemeHint hintType) cons
 
 const QFont *QGnomePlatformTheme::font(Font type) const
 {
-    return m_hints->font(type);
+    return GnomeSettings::font(type);
 }
 
 const QPalette *QGnomePlatformTheme::palette(Palette type) const
 {
-    Q_UNUSED(type);
+    Q_UNUSED(type)
 
-    return m_hints->palette();
+    return GnomeSettings::palette();
 }
 
 bool QGnomePlatformTheme::usePlatformNativeDialog(QPlatformTheme::DialogType type) const
@@ -83,7 +87,6 @@ bool QGnomePlatformTheme::usePlatformNativeDialog(QPlatformTheme::DialogType typ
         return true;
     case QPlatformTheme::ColorDialog:
         return true;
-    case QPlatformTheme::MessageDialog:
     default:
         return false;
     }
@@ -93,7 +96,7 @@ QPlatformDialogHelper *QGnomePlatformTheme::createPlatformDialogHelper(QPlatform
 {
     switch (type) {
     case QPlatformTheme::FileDialog: {
-        if (m_hints->canUseFileChooserPortal()) {
+        if (GnomeSettings::canUseFileChooserPortal()) {
             return new QXdgDesktopPortalFileDialog;
         } else {
             return new QGtk3FileDialogHelper;
@@ -103,36 +106,36 @@ QPlatformDialogHelper *QGnomePlatformTheme::createPlatformDialogHelper(QPlatform
         return new QGtk3FontDialogHelper();
     case QPlatformTheme::ColorDialog:
         return new QGtk3ColorDialogHelper();
-    case QPlatformTheme::MessageDialog:
     default:
-        return 0;
+        return nullptr;
     }
 }
 
-#if !defined(QT_NO_DBUS) && !defined(QT_NO_SYSTEMTRAYICON)
+#if QT_VERSION < 0x060000
+#ifndef QT_NO_SYSTEMTRAYICON
 static bool isDBusTrayAvailable() {
     static bool dbusTrayAvailable = false;
     static bool dbusTrayAvailableKnown = false;
     if (!dbusTrayAvailableKnown) {
         QDBusMenuConnection conn;
-        if (conn.isStatusNotifierHostRegistered())
+        if (conn.isStatusNotifierHostRegistered()) {
             dbusTrayAvailable = true;
+        }
         dbusTrayAvailableKnown = true;
     }
     return dbusTrayAvailable;
 }
 #endif
+#endif
 
-#if !defined(QT_NO_DBUS) && !defined(QT_NO_SYSTEMTRAYICON)
-QPlatformSystemTrayIcon * QGnomePlatformTheme::createPlatformSystemTrayIcon() const
+#ifndef QT_NO_SYSTEMTRAYICON
+QPlatformSystemTrayIcon* QGnomePlatformTheme::createPlatformSystemTrayIcon() const
 {
-    if (isDBusTrayAvailable())
+#if QT_VERSION < 0x060000
+    if (isDBusTrayAvailable()) {
         return new QDBusTrayIcon();
+    }
+#endif
     return Q_NULLPTR;
 }
 #endif
-
-void QGnomePlatformTheme::loadSettings()
-{
-    m_hints = new GnomeHintsSettings;
-}
