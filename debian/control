@@ -11,11 +11,14 @@ Uploaders: Modestas Vainius <modax@debian.org>,
            Dmitry Shachnev <mitya57@debian.org>,
            Mateusz Łukasik <mati75@linuxmint.pl>
 Build-Depends: debhelper-compat (= 13),
+	       cmake,
                libadwaitaqt-dev,
                libgtk-3-dev,
                qtbase5-private-dev,
-               qtwayland5-private-dev
-Standards-Version: 4.5.0
+               qtwayland5-private-dev,
+               libglib2.0-dev,
+               gsettings-desktop-schemas-dev
+Standards-Version: 4.6.1
 Homepage: https://github.com/FedoraQt/QGnomePlatform
 Vcs-Git: https://salsa.debian.org/qt-kde-team/extras/qgnomeplatform.git
 Vcs-Browser: https://salsa.debian.org/qt-kde-team/extras/qgnomeplatform
