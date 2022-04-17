@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Jan Grulich <jgrulich@redhat.com>
+ * Copyright (C) 2019-2021 Jan Grulich <jgrulich@redhat.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -22,12 +22,18 @@
 
 #include <QtWaylandClient/private/qwaylandabstractdecoration_p.h>
 
+#if QT_VERSION >= 0x060000
+#include <AdwaitaQt6/adwaitacolors.h>
+#include <AdwaitaQt6/adwaitarenderer.h>
+#else
+#include <AdwaitaQt/adwaitacolors.h>
+#include <AdwaitaQt/adwaitarenderer.h>
+#endif
+
 #include <QtGlobal>
 
 #include <QDateTime>
-
-class GnomeHintsSettings;
-class QPixmap;
+#include <QPixmap>
 
 using namespace QtWaylandClient;
 
@@ -44,22 +50,31 @@ class QGnomePlatformDecoration : public QWaylandAbstractDecoration
 {
 public:
     QGnomePlatformDecoration();
-    ~QGnomePlatformDecoration();
+    virtual ~QGnomePlatformDecoration() override = default;
+
 protected:
+#ifdef DECORATION_SHADOWS_SUPPORT // Qt 6.2.0+ or patched QtWayland
+    QMargins margins(MarginsType marginsType = Full) const override;
+#else
     QMargins margins() const override;
+#endif
     void paint(QPaintDevice *device) override;
     bool handleMouse(QWaylandInputDevice *inputDevice, const QPointF &local, const QPointF &global,Qt::MouseButtons b,Qt::KeyboardModifiers mods) override;
+#if QT_VERSION >= 0x060000
+    bool handleTouch(QWaylandInputDevice *inputDevice, const QPointF &local, const QPointF &global, QEventPoint::State state, Qt::KeyboardModifiers mods) override;
+#else
     bool handleTouch(QWaylandInputDevice *inputDevice, const QPointF &local, const QPointF &global, Qt::TouchPointState state, Qt::KeyboardModifiers mods) override;
-private:
-    void initializeButtonPixmaps();
-    void initializeColors();
-    QPixmap pixmapDarkVariant(const QPixmap &pixmap);
+#endif
 
+private:
     void processMouseTop(QWaylandInputDevice *inputDevice, const QPointF &local, Qt::MouseButtons b,Qt::KeyboardModifiers mods);
     void processMouseBottom(QWaylandInputDevice *inputDevice, const QPointF &local, Qt::MouseButtons b,Qt::KeyboardModifiers mods);
     void processMouseLeft(QWaylandInputDevice *inputDevice, const QPointF &local, Qt::MouseButtons b,Qt::KeyboardModifiers mods);
     void processMouseRight(QWaylandInputDevice *inputDevice, const QPointF &local, Qt::MouseButtons b,Qt::KeyboardModifiers mods);
+    void renderButton(QPainter *painter, const QRectF &rect, Adwaita::ButtonType button, bool renderFrame, bool sunken);
+
     bool clickButton(Qt::MouseButtons b, Button btn);
+    bool doubleClickButton(Qt::MouseButtons b, const QPointF &local, const QDateTime &currentTime);
     bool updateButtonHoverState(Button hoveredButton);
 
     QRectF closeButtonRect() const;
@@ -76,7 +91,6 @@ private:
     QColor m_foregroundInactiveColor;
 
     // Buttons
-    QHash<Button, QPixmap> m_buttonPixmaps;
     bool m_closeButtonHovered;
     bool m_maximizeButtonHovered;
     bool m_minimizeButtonHovered;
@@ -84,11 +98,15 @@ private:
     // For double-click support
     QDateTime m_lastButtonClick;
     QPointF m_lastButtonClickPosition;
+    Button m_doubleClicking = None;
 
     QStaticText m_windowTitle;
     Button m_clicking = None;
 
-    GnomeHintsSettings *m_hints;
+    // Shadows
+    QPixmap m_shadowPixmap;
+
+    Adwaita::ColorVariant m_adwaitaVariant;
 };
 
 

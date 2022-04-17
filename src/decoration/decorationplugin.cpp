@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Jan Grulich <jgrulich@redhat.com>
+ * Copyright (C) 2019-2021 Jan Grulich <jgrulich@redhat.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -22,7 +22,7 @@
 
 QWaylandAbstractDecoration *QGnomePlatformDecorationPlugin::create(const QString &key, const QStringList &paramList)
 {
-    Q_UNUSED(paramList);
+    Q_UNUSED(paramList)
     if (key == "gnome" || key == "gtk3" || key == "qgnomeplatform")
         return new QGnomePlatformDecoration();
     return nullptr;
