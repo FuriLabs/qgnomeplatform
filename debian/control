@@ -6,7 +6,7 @@ Uploaders: Matthias Geiger <matthias.geiger1024@tutanota.de>
 Build-Depends: cmake (>= 3.0),
                debhelper-compat (= 13),
                gsettings-desktop-schemas-dev,
-               libadwaitaqt-dev (>= 1.4.1~),
+               libadwaitaqt-dev (>= 1.4.2~),
                libglib2.0-dev,
                libgtk-3-dev,
                qtbase5-private-dev (>= 5.15.2~),
