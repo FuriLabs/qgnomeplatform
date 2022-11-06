@@ -50,7 +50,7 @@ License: GPL-2
  GNU General Public License for more details.
  .
  On Debian systems, the complete text of the GNU General Public License
- version 3 can be found in /usr/share/common-licenses/GPL-2.
+ version 2 can be found in /usr/share/common-licenses/GPL-2.
 
 License: LGPL-2.1+
  This program is free software: you can redistribute it and/or modify
@@ -76,4 +76,4 @@ License: LGPL-3
  GNU Lesser General Public License for more details.
  .
  On Debian systems, the complete text of the GNU Lesser General Public
- License version 2.1 can be found in /usr/share/common-licenses/LGPL-3.
+ License version 3 can be found in /usr/share/common-licenses/LGPL-3.
