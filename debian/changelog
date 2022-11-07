@@ -1,6 +1,7 @@
 qgnomeplatform (0.9.0-1) UNRELEASED; urgency=medium
 
   * New upstream release
+  * Fixed issues in d/copyright
 
  -- Matthias Geiger <matthias.geiger1024@tutanota.de>  Sat, 22 Oct 2022 14:11:06 -0700
 
