@@ -11,7 +11,7 @@ Build-Depends: cmake (>= 3.0),
                libgtk-3-dev,
                qtbase5-private-dev (>= 5.15.2~),
                qtwayland5-private-dev (>= 5.15.2~),
-Standards-Version: 4.6.1
+Standards-Version: 4.6.2
 Homepage: https://github.com/FedoraQt/QGnomePlatform
 Vcs-Git: https://salsa.debian.org/qt-kde-team/extras/qgnomeplatform.git
 Vcs-Browser: https://salsa.debian.org/qt-kde-team/extras/qgnomeplatform
