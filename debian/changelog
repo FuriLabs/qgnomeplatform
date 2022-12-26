@@ -1,4 +1,6 @@
-qgnomeplatform (0.9.0-1) UNRELEASED; urgency=medium
+qgnomeplatform (0.9.0-1) unstable; urgency=medium
+
+  * Team upload.
 
   [ Matthias Geiger ]
   * New upstream release
@@ -9,7 +11,7 @@ qgnomeplatform (0.9.0-1) UNRELEASED; urgency=medium
   * Bump Standards-Version to 4.6.2, no change required.
   * Update build-deps and deps with the info from cmake.
 
- -- Matthias Geiger <matthias.geiger1024@tutanota.de>  Sat, 22 Oct 2022 14:11:06 -0700
+ -- Aurélien COUDERC <coucouf@debian.org>  Mon, 26 Dec 2022 22:46:05 +0100
 
 qgnomeplatform (0.8.4-1) unstable; urgency=low
 
