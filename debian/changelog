@@ -7,6 +7,7 @@ qgnomeplatform (0.9.0-1) UNRELEASED; urgency=medium
   [ Aurélien COUDERC ]
   * Change maintainer to the Debian KDE Extras Team.
   * Bump Standards-Version to 4.6.2, no change required.
+  * Update build-deps and deps with the info from cmake.
 
  -- Matthias Geiger <matthias.geiger1024@tutanota.de>  Sat, 22 Oct 2022 14:11:06 -0700
 
