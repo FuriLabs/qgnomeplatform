@@ -1,6 +1,7 @@
 qgnomeplatform (0.9.1-1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Add new B-Ds in d/control
 
  -- Matthias Geiger <matthias.geiger1024@tutanota.de>  Mon, 12 Jun 2023 23:26:06 +0200
 
