@@ -1,6 +1,7 @@
 qgnomeplatform (0.9.2-1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Updated my mail address in d/control
 
  -- Matthias Geiger <werdahias@riseup.net>  Wed, 13 Sep 2023 18:50:14 +0200
 

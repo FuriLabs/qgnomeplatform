@@ -2,7 +2,7 @@ Source: qgnomeplatform
 Section: libs
 Priority: optional
 Maintainer: Debian KDE Extras Team <pkg-kde-extras@alioth-lists.debian.net>
-Uploaders: Matthias Geiger <matthias.geiger1024@tutanota.de>
+Uploaders: Matthias Geiger <werdahias@riseup.net>
 Build-Depends: cmake (>= 3.0),
                debhelper-compat (= 13),
                gsettings-desktop-schemas,
