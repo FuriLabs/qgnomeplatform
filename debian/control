@@ -22,7 +22,7 @@ Build-Depends: cmake (>= 3.0),
                libadwaitaqt6-dev (>= 1.4.2~),
                qt6-wayland-dev (>= 6.2.0~),
                qt6-wayland-private-dev (>= 6.2.0~),
-Standards-Version: 4.6.2
+Standards-Version: 4.7.0
 Homepage: https://github.com/FedoraQt/QGnomePlatform
 Vcs-Git: https://salsa.debian.org/qt-kde-team/extras/qgnomeplatform.git
 Vcs-Browser: https://salsa.debian.org/qt-kde-team/extras/qgnomeplatform
