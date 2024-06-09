@@ -1,0 +1,3 @@
+usr/lib/*/libqgnomeplatform6.so
+usr/lib/*/qt6/plugins/platformthemes/libqgnomeplatformtheme.so
+usr/lib/*/qt6/plugins/wayland-decoration-client/libqgnomeplatformdecoration.so

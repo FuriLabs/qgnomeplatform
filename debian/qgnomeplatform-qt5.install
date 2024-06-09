@@ -1,0 +1,7 @@
+usr/lib/*/libqgnomeplatform.so
+usr/lib/*/qt5/plugins/platformthemes/libqgnomeplatformtheme.so
+usr/lib/*/qt5/plugins/wayland-decoration-client/libqgnomeplatformdecoration.so
+usr/share/color-schemes/Adwaita.colors
+usr/share/color-schemes/AdwaitaDark.colors
+usr/share/color-schemes/AdwaitaHighcontrast.colors
+usr/share/color-schemes/AdwaitaHighcontrastInverse.colors

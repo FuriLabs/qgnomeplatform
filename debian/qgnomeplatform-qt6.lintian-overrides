@@ -1,0 +1,6 @@
+# qgnomeplatform is a private library, this is a false positive by lintian
+qgnomeplatform-qt6: lacks-ldconfig-trigger usr/lib/*/libqgnomeplatform6.so
+qgnomeplatform-qt6: package-name-doesnt-match-sonames libqgnomeplatform6
+qgnomeplatform-qt6: shared-library-lacks-version usr/lib/*/libqgnomeplatform6.so libqgnomeplatform6.so
+qgnomeplatform-qt6: no-symbols-control-file usr/lib/*/libqgnomeplatform6.so
+
