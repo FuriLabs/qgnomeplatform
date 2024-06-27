@@ -1,9 +1,9 @@
-qgnomeplatform (0.9.2-3) UNRELEASED; urgency=medium
+qgnomeplatform (0.9.2-3) unstable; urgency=medium
 
   * Upload to unstable 
   * Fix typo in d/control
 
- -- Matthias Geiger <werdahias@riseup.net>  Thu, 27 Jun 2024 21:48:28 +0200
+ -- Matthias Geiger <werdahias@riseup.net>  Thu, 27 Jun 2024 21:50:46 +0200
 
 qgnomeplatform (0.9.2-2) experimental; urgency=medium
 
