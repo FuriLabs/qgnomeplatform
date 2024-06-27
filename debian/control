@@ -37,8 +37,8 @@ Description: Qt 5 extra widget styles - GNOME Platform theme
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
  .
- This package contains the GNOME style and platform themei for QT6. Export
- QT_QPA_PLATFORMTHEME=gnome to enable it for all Qt applications.
+ This package contains the GNOME style and platform theme for QT5. Export
+ QT_QPA_PLATFORMTHEME=gnome to enable it for all Qt5 applications.
 
 Package: qgnomeplatform-qt6
 Architecture: any
@@ -50,4 +50,4 @@ Description: Qt 6 extra widget styles - GNOME Platform theme
  is its rich set of widgets that provide standard GUI functionality.
  .
  This package contains the GNOME style and platform theme for QT6. Export
- QT_QPA_PLATFORMTHEME=gnome to enable it for all Qt applications.
+ QT_QPA_PLATFORMTHEME=gnome to enable it for all Qt6 applications.
