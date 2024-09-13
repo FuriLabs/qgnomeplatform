@@ -1,9 +1,10 @@
-qgnomeplatform (0.9.2-4) UNRELEASED; urgency=medium
+qgnomeplatform (0.9.2-4) unstable; urgency=medium
 
+  * Team upload.
   * Add a patch to fix FTBFS with qtbase 5.15.13+dfsg-4 (Closes:
     #1077421).
 
- -- Patrick Franz <deltaone@debian.org>  Fri, 13 Sep 2024 21:50:03 +0200
+ -- Patrick Franz <deltaone@debian.org>  Fri, 13 Sep 2024 21:52:31 +0200
 
 qgnomeplatform (0.9.2-3) unstable; urgency=medium
 
