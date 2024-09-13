@@ -1,0 +1,18 @@
+Description: fix build with https://codereview.qt-project.org/c/qt/qtbase/+/463665
+￼	Author: Dmitry Shachnev <mitya57@debian.org>
+￼	Forwarded: not-needed (vanilla Qt 5 does not have that patch)
+￼	Last-Update: 2024-09-13
+
+diff --git a/src/theme/qgnomeplatformtheme.cpp b/src/theme/qgnomeplatformtheme.cpp
+index 99719a6..768a2c3 100644
+--- a/src/theme/qgnomeplatformtheme.cpp
++++ b/src/theme/qgnomeplatformtheme.cpp
+@@ -182,7 +182,7 @@ static bool isDBusTrayAvailable()
+     static bool dbusTrayAvailableKnown = false;
+     if (!dbusTrayAvailableKnown) {
+         QDBusMenuConnection conn;
+-        if (conn.isStatusNotifierHostRegistered()) {
++        if (conn.isWatcherRegistered()) {
+             dbusTrayAvailable = true;
+         }
+         dbusTrayAvailableKnown = true;
