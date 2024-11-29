@@ -102,7 +102,7 @@ QGnomePlatformTheme::QGnomePlatformTheme()
         return;
     }
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+/*#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     // Unfortunately we only have a way to check this on Qt5
     if (!QQuickStyle::availableStyles().contains(QStringLiteral("org.kde.desktop"))) {
         qCWarning(QGnomePlatformThemeLog) << "The desktop style for QtQuick Controls 2 applications"
@@ -112,7 +112,7 @@ QGnomePlatformTheme::QGnomePlatformTheme()
     }
 
     QQuickStyle::setStyle(QStringLiteral("org.kde.desktop"));
-#endif
+#endif*/
 }
 
 QGnomePlatformTheme::~QGnomePlatformTheme()
