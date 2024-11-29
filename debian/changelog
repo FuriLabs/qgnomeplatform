@@ -1,0 +1,62 @@
+qgnomeplatform (0.9.2-4) unstable; urgency=medium
+
+  * Team upload.
+  * Add a patch to fix FTBFS with qtbase 5.15.13+dfsg-4 (Closes:
+    #1077421).
+
+ -- Patrick Franz <deltaone@debian.org>  Fri, 13 Sep 2024 21:52:31 +0200
+
+qgnomeplatform (0.9.2-3) unstable; urgency=medium
+
+  * Upload to unstable 
+  * Fix typo in d/control
+
+ -- Matthias Geiger <werdahias@riseup.net>  Thu, 27 Jun 2024 21:50:46 +0200
+
+qgnomeplatform (0.9.2-2) experimental; urgency=medium
+
+  * Build QT6 plugin, too (Closes: #1032840)
+    - Drop QT_SELECT from d/rules
+    - Build-depend on libkf5qqc2desktopstyle-dev for QT5 plugin
+    - Build-depend on qt6-base-dev, qt6-declarative-dev, libadwaitaqt6-dev,
+      qt6-wayland-dev, qt6-base-private-dev, qt6-wayland-private-dev
+    - Update lintian overrides for new binary package 
+  * d/control: Switch from pkg-config to pkgconf
+  * Bump Standards-Version to 4.7.0; no changes needed
+
+ -- Matthias Geiger <werdahias@riseup.net>  Thu, 27 Jun 2024 16:32:29 +0200
+
+qgnomeplatform (0.9.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Updated my mail address in d/control
+
+ -- Matthias Geiger <werdahias@riseup.net>  Wed, 13 Sep 2023 19:28:56 +0200
+
+qgnomeplatform (0.9.1-1) unstable; urgency=medium
+
+  * New upstream release. (Closes: #1032838)
+  * Add new B-Ds in d/control
+
+ -- Matthias Geiger <matthias.geiger1024@tutanota.de>  Mon, 12 Jun 2023 23:52:07 +0200
+
+qgnomeplatform (0.9.0-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Matthias Geiger ]
+  * New upstream release
+  * Fixed issues in d/copyright
+
+  [ Aurélien COUDERC ]
+  * Change maintainer to the Debian KDE Extras Team.
+  * Bump Standards-Version to 4.6.2, no change required.
+  * Update build-deps and deps with the info from cmake.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Mon, 26 Dec 2022 22:46:05 +0100
+
+qgnomeplatform (0.8.4-1) unstable; urgency=low
+
+  * Initial release. (Closes: #1013369)
+
+ -- Matthias Geiger <matthias.geiger1024@tutanota.de>  Thu, 29 Sep 2022 13:04:41 -0700

@@ -1,0 +1,79 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: QGnomePlatform
+Upstream-Contact: Jan Grulich <jgrulich@redhat.com>
+Source: https://github.com/FedoraQt/QGnomePlatform
+
+Files: *
+Copyright: 2016-2020 Jan Grulich <jgrulich@redhat.com>
+License: LGPL-2.1+
+
+Files: src/theme/qgtk3dialoghelpers.cpp
+ src/theme/qgtk3dialoghelpers.h
+Copyright: 2016 The Qt Company Ltd.
+License: GPL-2 or LGPL-3
+
+Files: src/theme/qgnomeplatformtheme.cpp
+ src/theme/qgnomeplatformtheme.h
+Copyright: 2015 Martin Bříza <mbriza@redhat.com>
+  2017-2021 Jan Grulich <jgrulich@redhat.com>
+License: LGPL-2.1+
+
+Files: src/theme/platformplugin.cpp
+ src/theme/platformplugin.h
+Copyright: 2015 Martin Bříza <mbriza@redhat.com>
+License: LGPL-2.1+
+
+Files: src/theme/qxdgdesktopportalfiledialog.cpp
+ src/theme/qxdgdesktopportalfiledialog_p.h
+Copyright: 2017-2021 Red Hat, Inc
+License: LGPL-2.1+
+
+Files: src/decoration/qgnomeplatformdecoration.cpp
+Copyright: 2016 Robin Burchell <robin.burchell@viroteck.net>
+  2016 The Qt Company Ltd.
+  2019-2021 Jan Grulich <jgrulich@redhat.com>
+License: GPL-2 or LGPL-3
+
+Files: debian/*
+Copyright: 2021 Mateusz Łukasik <mati75@linuxmint.pl>
+	   2022 Matthias Geiger <matthias.geiger1024@tutanota.de>
+License: LGPL-2.1+
+
+License: GPL-2
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License version 2 as
+ published by the Free Software Foundation.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ version 2 can be found in /usr/share/common-licenses/GPL-2.
+
+License: LGPL-2.1+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License version 2.1
+ as published by the Free Software Foundation.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ .
+ On Debian systems, the complete text of the GNU Lesser General Public
+ License version 2.1 can be found in /usr/share/common-licenses/LGPL-2.1.
+
+License: LGPL-3
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License version 3
+ as published by the Free Software Foundation.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ .
+ On Debian systems, the complete text of the GNU Lesser General Public
+ License version 3 can be found in /usr/share/common-licenses/LGPL-3.

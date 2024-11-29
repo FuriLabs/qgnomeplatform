@@ -1,0 +1,53 @@
+Source: qgnomeplatform
+Section: libs
+Priority: optional
+Maintainer: Debian KDE Extras Team <pkg-kde-extras@alioth-lists.debian.net>
+Uploaders: Matthias Geiger <werdahias@riseup.net>
+Build-Depends: cmake (>= 3.0),
+               debhelper-compat (= 13),
+               gsettings-desktop-schemas,
+               gsettings-desktop-schemas-dev,
+               libadwaitaqt-dev (>= 1.4.2~),
+               libglib2.0-dev,
+               libgtk-3-dev,
+               libkf5qqc2desktopstyle-dev,
+               pkgconf,
+               qtbase5-private-dev (>= 5.15.2~),
+               qtwayland5-private-dev (>= 5.15.2~),
+               qtquickcontrols2-5-dev,
+               qtdeclarative5-dev (>= 5.15.8~),
+               qt6-base-dev (>= 6.2.0~),
+               qt6-base-private-dev (>= 6.2.0~),
+               qt6-declarative-dev (>= 6.2.0),
+               libadwaitaqt6-dev (>= 1.4.2~),
+               qt6-wayland-dev (>= 6.2.0~),
+               qt6-wayland-private-dev (>= 6.2.0~),
+Standards-Version: 4.7.0
+Homepage: https://github.com/FedoraQt/QGnomePlatform
+Vcs-Git: https://salsa.debian.org/qt-kde-team/extras/qgnomeplatform.git
+Vcs-Browser: https://salsa.debian.org/qt-kde-team/extras/qgnomeplatform
+Rules-Requires-Root: no
+
+Package: qgnomeplatform-qt5
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Qt 5 extra widget styles - GNOME Platform theme
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the GNOME style and platform theme for QT5. Export
+ QT_QPA_PLATFORMTHEME=gnome to enable it for all Qt5 applications.
+
+Package: qgnomeplatform-qt6
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Qt 6 extra widget styles - GNOME Platform theme
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the GNOME style and platform theme for QT6. Export
+ QT_QPA_PLATFORMTHEME=gnome to enable it for all Qt6 applications.
