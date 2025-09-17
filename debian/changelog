@@ -1,5 +1,8 @@
 qgnomeplatform (0.9.2-5) UNRELEASED; urgency=medium
 
+  [ Patrick Franz ]
+  * Fix build failure with CMake 4 (Closes: #1113440).
+
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Wed, 17 Sep 2025 18:39:34 +0200
 
 qgnomeplatform (0.9.2-4) unstable; urgency=medium
