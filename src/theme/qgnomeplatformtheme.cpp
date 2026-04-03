@@ -42,7 +42,7 @@
 #endif
 
 #if QT_VERSION > 0x060000
-#include <QtGui/private/qgenericunixthemes_p.h>
+#include <QtGui/private/qgenericunixtheme_p.h>
 #endif
 
 Q_LOGGING_CATEGORY(QGnomePlatformThemeLog, "qt.qpa.qgnomeplatform.theme")
